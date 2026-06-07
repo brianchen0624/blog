@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>網頁裡的微互動藝術 — DEVLOG</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="blog.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="blog-home.html" class="logo">
+      <span class="logo-dot"></span>
+      DEVLOG
+    </a>
+    <ul class="nav-links">
+      <li><a href="blog-home.html">首頁</a></li>
+      <li><a href="blog-listing.html">文章</a></li>
+      <li><a href="#">作品集</a></li>
+      <li><a href="#">關於我</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- Breadcrumb -->
+<nav class="breadcrumb">
+  <a href="blog-home.html">首頁</a>
+  <span class="breadcrumb-sep">›</span>
+  <a href="blog-listing.html">文章</a>
+  <span class="breadcrumb-sep">›</span>
+  <span>網頁裡的微互動藝術</span>
+</nav>
+
+<!-- Article Header -->
+<header class="article-header">
+  <div class="article-cats">
+    <span class="cat-pill">UIUX 設計</span>
+    <span class="cat-pill">網頁設計</span>
+    <span class="cat-pill">前端技術</span>
+  </div>
+  <h1 class="article-title">網頁裡的微互動藝術：利用 CSS 與 JS 動畫為諮詢網站注入靈魂並提升用戶轉化率</h1>
+  <div class="article-meta-row">
+    <div class="meta-author">
+      <div class="author-avatar">王</div>
+      <span>王小明</span>
+    </div>
+    <span class="meta-sep">·</span>
+    <span>Oct 16, 2022</span>
+    <span class="meta-sep">·</span>
+    <span>閱讀約 8 分鐘</span>
+    <span class="meta-sep">·</span>
+    <span class="meta-stat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      110 views
+    </span>
+    <span class="meta-stat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+      2 shares
+    </span>
+  </div>
+</header>
+
+<!-- Hero Image -->
+<div class="article-hero-img">
+  <div class="hero-img-box">
+    <div class="hero-img-placeholder">
+      <img src="img/news09.jpg">
+    </div>
+  </div>
+</div>
+
+<!-- Article Layout: Prose + Sidebar -->
+<div class="article-layout">
+
+  <!-- Main Prose -->
+  <article class="prose">
+
+    <p>微互動（Micro-interaction）是指介面中那些細小但意義深遠的動態回饋——按鈕被按下時的輕微形變、表單驗證成功時的綠色光暈、頁面滾動時標題悄悄縮小的過程。它們不起眼，卻是使用者決定「這個網站好不好用」的核心感知來源。</p>
+
+    <h2>為什麼微互動能提升轉化率？</h2>
+
+    <p>轉化率的核心是<strong>信任感與流暢感</strong>。當使用者在操作介面時感覺到「它在回應我」，他們會更願意繼續往下走，不管是填寫表單、點擊 CTA 按鈕，還是完成購買流程。</p>
+
+    <p>根據多個 A/B 測試數據顯示，在諮詢類網站中加入精心設計的微互動，可以讓 CTA 點擊率提升 12% 至 28%。這個數字背後的邏輯很簡單：<strong>動態回饋讓人感受到掌控感</strong>，而掌控感直接影響信任度。</p>
+
+    <div class="callout">
+      關鍵洞察：微互動的設計原則不是「加越多越好」，而是在正確的節點提供正確的回饋。過度的動態效果反而會造成認知負擔，讓使用者感到疲乏。
+    </div>
+
+    <h2>六種高效微互動模式</h2>
+
+    <h3>1. 按鈕狀態回饋</h3>
+    <p>按鈕是轉化流程中最重要的元素。一個完整的按鈕微互動包含四種狀態：預設、懸停（hover）、按下（active）、載入中（loading）。每種狀態都需要視覺差異。</p>
+
+    <div class="code-block">
+      <div class="code-block-header">
+        <div class="code-dots">
+          <span class="cdot r"></span>
+          <span class="cdot a"></span>
+          <span class="cdot g"></span>
+        </div>
+        <span>CSS · button-interaction.css</span>
+      </div>
+      <pre><span class="tok-cm">/* 按鈕基礎微互動 */</span>
+<span class="tok-fn">.btn-primary</span> {
+  transition: transform <span class="tok-str">0.15s</span> ease, opacity <span class="tok-str">0.15s</span> ease;
+}
+
+<span class="tok-fn">.btn-primary:hover</span> {
+  transform: translateY(<span class="tok-str">-2px</span>);
+}
+
+<span class="tok-fn">.btn-primary:active</span> {
+  transform: translateY(<span class="tok-str">0px</span>) scale(<span class="tok-str">0.97</span>);
+  opacity: <span class="tok-str">0.85</span>;
+}</pre>
+    </div>
+
+    <h3>2. 表單驗證動畫</h3>
+    <p>表單是諮詢網站的核心轉化元素。當使用者填寫欄位時，即時的視覺回饋（驗證通過的綠色邊框、錯誤時的輕微抖動）能有效降低填寫過程中的焦慮感，減少表單放棄率。</p>
+
+    <h3>3. 捲動觸發動畫（Scroll-triggered Animation）</h3>
+    <p>使用 <strong>Intersection Observer API</strong> 監聽元素進入視窗的時機，讓內容區塊在適當時機以淡入或位移的方式出現，引導使用者視線，強化資訊層次感。</p>
+
+    <hr class="prose-divider">
+
+    <h2>工具與技術選型建議</h2>
+
+    <p>對於多數諮詢網站來說，純 CSS 動畫（transition + animation）已足夠應付 80% 的微互動需求。在效能敏感的情境下，應優先考慮：</p>
+
+    <ul>
+      <li>只對 <strong>transform</strong> 與 <strong>opacity</strong> 做動畫，避免觸發 layout reflow</li>
+      <li>使用 <strong>will-change</strong> 屬性提示瀏覽器預先合成圖層</li>
+      <li>動畫時長控制在 150ms–400ms 之間，超出此範圍會感覺遲鈍或突兀</li>
+      <li>為視覺敏感族群提供 <strong>prefers-reduced-motion</strong> 回退方案</li>
+    </ul>
+
+    <p>若需要更複雜的序列動畫或物理模擬，可以考慮引入 <a href="#">GSAP</a> 或 <a href="#">Motion One</a>，這兩個函式庫在效能與 API 易用性上都表現優秀。</p>
+
+    <div class="callout">
+      無障礙提醒：部分使用者因前庭系統障礙對動態效果極為敏感。請務必在 CSS 中加入 <code style="font-family:monospace;font-size:0.9em;color:#9ab0d8">@media (prefers-reduced-motion: reduce)</code> 的回退設定，關閉或大幅縮減動畫效果。
+    </div>
+
+    <h2>結語</h2>
+    <p>微互動的本質是對話——介面對使用者操作的即時回應。當這段對話流暢、自然、有意義，使用者就會在潛意識中建立對品牌的信任感。這種信任感，正是諮詢類網站最稀缺也最珍貴的資產。</p>
+
+  </article>
+
+  <!-- Sidebar -->
+  <aside class="article-sidebar">
+
+    <!-- Table of Contents -->
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">目錄</div>
+      <ul class="toc-list">
+        <li><a href="#" class="active">為什麼微互動能提升轉化率？</a></li>
+        <li><a href="#">六種高效微互動模式</a></li>
+        <li class="sub"><a href="#">1. 按鈕狀態回饋</a></li>
+        <li class="sub"><a href="#">2. 表單驗證動畫</a></li>
+        <li class="sub"><a href="#">3. 捲動觸發動畫</a></li>
+        <li><a href="#">工具與技術選型建議</a></li>
+        <li><a href="#">結語</a></li>
+      </ul>
+    </div>
+
+    <!-- Tags -->
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">標籤</div>
+      <div class="tags-cloud">
+        <span class="tag-item">CSS 動畫</span>
+        <span class="tag-item">微互動</span>
+        <span class="tag-item">UIUX</span>
+        <span class="tag-item">轉化率</span>
+        <span class="tag-item">前端技術</span>
+        <span class="tag-item">JavaScript</span>
+      </div>
+    </div>
+
+    <!-- Related Articles -->
+    <div class="sidebar-box">
+      <div class="sidebar-box-title">相關文章</div>
+      <div class="related-list">
+        <a href="#" class="related-item">
+          <div class="related-item-title">10年職人手記：如何用 Figma 打造企業級設計系統</div>
+          <div class="related-item-date">Oct 16, 2022</div>
+        </a>
+        <a href="#" class="related-item">
+          <div class="related-item-title">當 AI 遇上介面設計：生成式工具如何重塑工作流</div>
+          <div class="related-item-date">Oct 16, 2022</div>
+        </a>
+        <a href="#" class="related-item">
+          <div class="related-item-title">揭開金融 App 的設計密碼：Open Bank API 的數據呈現</div>
+          <div class="related-item-date">Oct 16, 2022</div>
+        </a>
+      </div>
+    </div>
+
+  </aside>
+</div>
+
+<!-- Author Card -->
+<div class="author-card">
+  <div class="author-card-inner">
+    <div class="author-card-avatar"><img src="img/155052.jpg"></div>
+    <div class="author-card-info">
+      <div class="author-card-name">王小明</div>
+      <div class="author-card-bio">UI/UX 設計師 × 前端工程師，專注於設計系統、互動動效與 AI 輔助創作。目前任職於某科技新創，同時維護這個記錄思考的小角落。</div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <span>© 2024 DEVLOG · 王小明</span>
+    <div class="footer-links">
+      <a href="#">GitHub</a>
+      <a href="#">Twitter</a>
+      <a href="#">RSS</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
